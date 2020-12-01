@@ -29,24 +29,22 @@ function Form (props) {
 
   function handleChange (value: string, name: string) {
     setFormData({ ...formData, ... { [name]: value }})
-    console.log({ ...formData, ... { [name]: value }})
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (validation()) {
-      // props.register(formData);
+  function handleSubmit() {
+    let validated = validation();
+    if (validated) {
+      props.register(formData);
     }
   }
 
   function validation () {
-    var validated = false
     if (formData.firstName === undefined || formData.phoneNumber === undefined) {
       alert("First Name and Phone Number are required.");
+      return false
     } else {
-      validated = true
+      return true
     }
-    return validated;
   }
 
   return (
@@ -60,7 +58,7 @@ function Form (props) {
           </div>
         })}
         <div>
-          <button onClick={handleSubmit}>Register</button>
+          <button onClick={(event) => {event.preventDefault(); handleSubmit()}}>Register</button>
         </div>
       </form>
     </div>

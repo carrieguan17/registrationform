@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Form from './components/Form.jsx'
+import Form from './components/Form.jsx';
+import Confirmation from './components/Confirmation.jsx'
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+function App () {
+  const [showForm, setShowForm] = useState(true);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [userData, setUserData] = useState({})
+
+  function register (formData) {
+    setShowForm(false);
+    setShowConfirmation(true);
+    setUserData(formData)
   }
 
-  render () {
+  if(showForm) {
     return (
       <div>
-        <Form />
+        <Form register={register}/>
+      </div>
+    )
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  } else if (showConfirmation) {
+    return (
+      <div>
+        <Confirmation userData={userData}/>
       </div>
     )
   }

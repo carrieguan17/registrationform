@@ -1,12 +1,28 @@
 // import dependencies
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+const bodyparser = require('body-parser');
 const PORT = 3000;
-const db = require('../database')
+const db = require('../database/index.js');
 
 // middleware
 app.use(express.static(__dirname + '/../client/dist'));
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded( {extended: true} ));
+
+// route
+app.post('/registration', function(req, res) {
+  let userData = req.body;
+  db.registerUser(userData, (err, result) => {
+    if(err) {
+      res.status(401);
+      res.send(err)
+    } else {
+      res.status(201);
+      res.send();
+    }
+  })
+})
 
 // start server
 app.listen(3000, function() {

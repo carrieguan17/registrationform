@@ -1,11 +1,11 @@
 const sqlite3 = require('sqlite3').verbose()
 
 // open database in memory
-let db = new sqlite3.Database(':memory:', (err) => {
+const db = new sqlite3.Database('../registration.db', (err) => {
   if (err) {
     return console.error(err.message);
   }
-  console.log('Connected to the in-memory SQlite DB')
+  console.log('Connected to the registration SQlite DB')
 })
 
 // close the database connection
@@ -16,6 +16,19 @@ let db = new sqlite3.Database(':memory:', (err) => {
 //   console.log('Close the DB connection')
 // })
 
+var registerUser = function (userData, callback) {
+  db.run(`INSERT INTO registration(firstName, lastName, gender, dataOfBirth, phoneNumber) VALUES(?, ?, ?, ?, ?)`, [`${userData.firstName}, ${userData.lastName}, ${userData.gender}, ${userData.dataOfBirth}, ${userData.phoneNumber}`], (err, result) => {
+    if(err) {
+      callback(err)
+      console.log("Error posting user info", err)
+    } else {
+      callback(null, result);
+      console.log("User registration success")
+    }
+  })
+}
+
 module.exports = {
-  db: db
+  db: db,
+  registerUser: registerUser
 }

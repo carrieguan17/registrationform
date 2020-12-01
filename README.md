@@ -4,4 +4,4 @@
 1. npm run react-dev
 2. npm start
 3. sqlite3 registration.db
-   .read schema.sql
+4. (inside sqlite3 shell) .read schema.sql

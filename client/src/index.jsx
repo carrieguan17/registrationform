@@ -10,6 +10,13 @@ function App () {
   const [userData, setUserData] = useState({})
 
   function register (formData) {
+    axios.post('/registration', formData)
+    .then((response) => {
+      var postSuccess = true;
+    })
+    .catch(function(err) {
+      console.log(err)
+    })
     setShowForm(false);
     setShowConfirmation(true);
     setUserData(formData)
@@ -21,7 +28,6 @@ function App () {
         <Form register={register}/>
       </div>
     )
-  const [showConfirmation, setShowConfirmation] = useState(false);
   } else if (showConfirmation) {
     return (
       <div>

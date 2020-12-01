@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Confirmation (props) {
-  console.log(props.userData)
   return (
     <div>
       <h1>Confirmation</h1>

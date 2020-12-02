@@ -1,7 +1,6 @@
 const sqlite3 = require('sqlite3').verbose()
 
-// open database in memory
-const db = new sqlite3.Database('../registration.db', (err) => {
+const db = new sqlite3.Database('/Users/berryblu/Desktop/assignment/projects/registrationform/registration.db', (err) => {
   if (err) {
     return console.error(err.message);
   }

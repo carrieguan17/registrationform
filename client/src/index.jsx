@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Form from './components/Form.jsx';
-import Confirmation from './components/Confirmation.jsx'
+import Confirmation from './components/Confirmation.jsx';
+import styles from './styles/index.css';
 
 function App () {
   const [showForm, setShowForm] = useState(true);
@@ -11,9 +12,6 @@ function App () {
 
   function register (formData) {
     axios.post('/registration', formData)
-    .then((response) => {
-      var postSuccess = true;
-    })
     .catch(function(err) {
       console.log(err)
     })
@@ -24,13 +22,13 @@ function App () {
 
   if(showForm) {
     return (
-      <div>
+      <div className={styles.container}>
         <Form register={register}/>
       </div>
     )
   } else if (showConfirmation) {
     return (
-      <div>
+      <div className={styles.container}>
         <Confirmation userData={userData}/>
       </div>
     )

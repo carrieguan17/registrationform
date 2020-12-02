@@ -1,0 +1,50 @@
+.formContainer {
+  grid-column: center-start / center-end;
+  display: grid;
+  grid-template-rows: repeat(2, minmax(min-content, 5rem));
+  justify-content: center;
+}
+
+.formHeader {
+  grid-column: 1 / 2;
+  min-width: 20rem;
+  max-height: 5rem;
+  background-color: #dbe2ef;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.formContent {
+  grid-column: 1 / 2;
+  background-color: #f9f7f7;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 0.5rem;
+  min-width: 20rem;
+}
+
+.formElement {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.btnContainer {
+  padding-left: 13.5rem;
+}
+
+.registerBtn {
+  display: grid;
+  height: 2rem;
+  width: 5rem;
+  border-radius: 5%;
+  background-color: #3f72af;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18);
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer
+}

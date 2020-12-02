@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '../styles/Form.css';
 
 let userInfo = [
   {
@@ -48,17 +49,17 @@ function Form (props) {
   }
 
   return (
-    <div>
-      <h1>Registration</h1>
-      <form>
+    <div className={styles.formContainer}>
+      <div className={styles.formHeader}>Registration</div>
+      <form className={styles.formContent}>
         {userInfo.map(userInfoItem => {
-          return <div>
-            {userInfoItem.label}
+          return <div className={styles.formElement}>
+            <div>{userInfoItem.label}</div>
             <input value={formData[userInfoItem.name]} onChange={(event) => {handleChange(event.target.value, userInfoItem.name)}}/>
           </div>
         })}
-        <div>
-          <button onClick={(event) => {event.preventDefault(); handleSubmit()}}>Register</button>
+        <div className={styles.btnContainer}>
+          <div className={styles.registerBtn} onClick={(event) => {event.preventDefault(); handleSubmit()}}>Register</div>
         </div>
       </form>
     </div>

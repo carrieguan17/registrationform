@@ -23,7 +23,7 @@ function Form (props) {
   }
 
   function validation (formData) {
-    let numberValidated = typeof(Number(formData.phoneNumber)) === 'number' && formData.phoneNumber.length === 10;
+    let numberValidated = typeof(Number(formData.phoneNumber)) === 'number' && formData.phoneNumber.length !== 10;
     if (formData.firstName === '' || numberValidated) {
       alert("First Name and Phone Number are required.");
       return false

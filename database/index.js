@@ -1,6 +1,8 @@
-const sqlite3 = require('sqlite3').verbose()
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 
-const db = new sqlite3.Database('/Users/berryblu/Desktop/assignment/projects/registrationform/registration.db', (err) => {
+const filepath = path.join(__dirname, '../registration.db')
+const db = new sqlite3.Database(filepath, (err) => {
   if (err) {
     return console.error(err.message);
   }

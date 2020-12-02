@@ -27,7 +27,9 @@
 }
 
 .confirmationMessage {
-  max-height: 3rem
+  max-height: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .userData {

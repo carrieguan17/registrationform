@@ -1,46 +1,30 @@
 import React, { useState } from 'react';
 import styles from '../styles/Form.css';
 
-let userInfo = [
-  {
-    label: "First Name",
-    name: "firstName"
-  },
-  {
-    label: "Last Name",
-    name: "lastName"
-  },
-  {
-    label: "Gender",
-    name: "gender"
-  },
-  {
-    label: "Date Of Birth",
-    name: "dateOfBirth"
-  },
-  {
-    label: "Phone Number",
-    name: "phoneNumber"
-  }
-]
-
 function Form (props) {
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    gender: '',
+    dateOfBirth: '',
+    phoneNumber: ''
+  });
 
-  function handleChange (value: string, name: string) {
-    setFormData({ ...formData, ... { [name]: value }})
+  function handleChange (event) {
+    setFormData({ ...formData, ... { [event.target.name]: event.target.value }})
   }
 
   function handleSubmit() {
-    let validated = validation();
+    let validated = validation(formData);
     if (validated) {
       props.register(formData);
     }
   }
 
-  function validation () {
-    if (formData.firstName === undefined || formData.phoneNumber === undefined) {
+  function validation (formData) {
+    let numberValidated = typeof(Number(formData.phoneNumber)) === 'number' && formData.phoneNumber.length === 10;
+    if (formData.firstName === '' || numberValidated) {
       alert("First Name and Phone Number are required.");
       return false
     } else {
@@ -52,12 +36,26 @@ function Form (props) {
     <div className={styles.formContainer}>
       <div className={styles.formHeader}>Registration</div>
       <form className={styles.formContent}>
-        {userInfo.map(userInfoItem => {
-          return <div className={styles.formElement}>
-            <div>{userInfoItem.label}</div>
-            <input value={formData[userInfoItem.name]} onChange={(event) => {handleChange(event.target.value, userInfoItem.name)}}/>
-          </div>
-        })}
+        <div className={styles.formElement}>
+          <div>First Name</div>
+          <input name="firstName" value={formData.firstName} onChange={(event) => {handleChange(event)}}/>
+        </div>
+        <div className={styles.formElement}>
+          <div>Last Name</div>
+          <input name="lastName" value={formData.lastName} onChange={(event) => {handleChange(event)}}/>
+        </div>
+        <div className={styles.formElement}>
+          <div>Gender</div>
+          <input name="gender" value={formData.gender} onChange={(event) => {handleChange(event)}}/>
+        </div>
+        <div className={styles.formElement}>
+          <div>Date of Birth (enter as as mm/dd/yyyy) </div>
+          <input name="dateOfBirth" value={formData.dateOfBirth} onChange={(event) => {handleChange(event)}}/>
+        </div>
+        <div className={styles.formElement}>
+          <div>Phone Number (enter 10 digits without '-' or '()')</div>
+          <input name="phoneNumber" value={formData.phoneNumber} onChange={(event) => {handleChange(event)}}/>
+        </div>
         <div className={styles.btnContainer}>
           <div className={styles.registerBtn} onClick={(event) => {event.preventDefault(); handleSubmit()}}>Register</div>
         </div>
